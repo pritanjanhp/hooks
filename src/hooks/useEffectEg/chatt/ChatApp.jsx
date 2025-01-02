@@ -20,7 +20,7 @@ const ChatApp = () => {
             <button onClick={() => setShow(!show)}>
                 {show ? 'close chat' : 'open chat'}
             </button>
-            {show && <hr />}
+            <hr />
             {show && <ChatServer roomId={roomId} />}
         </>
     )
