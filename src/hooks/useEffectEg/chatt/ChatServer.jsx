@@ -27,7 +27,7 @@ const ChatServer = ({ roomId }) => {
         <>
             <h3>Chat Server</h3>
             <label>
-                Server URL:{' '}
+                Server URL:
                 <input value={serverUrl} onChange={e => setServerUrl(e.target.value)} />
             </label>
             <h1>Welcome to {roomId} room</h1>

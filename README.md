@@ -1,46 +1,81 @@
 # Getting Started with Create React App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## useState() > useEffect() > useRef() >  useReducer() > useContext() > useCallback > useMemo() > customHooks()
 
-## Available Scripts
+### useCallback > useMemo() --> read
 
-In the project directory, you can run:
+## useEffect()
 
-### `npm start`
+In React, useEffect is a Hook that allows you to perform side effects in function components. /
+It is a part of the React API and is used to handle operations like data fetching, subscriptions, or manual DOM manipulation. /
+It is similar to lifecycle methods in class components, such as componentDidMount, componentDidUpdate, and componentWillUnmount.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Syntax of useEffect
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+useEffect(() => { \
+ // Code to run on component mount, update, or unmount \
+}, [dependencies]); \
 
-### `npm test`
+Effect function: The function inside useEffect runs after the component renders. It's where side effects are performed. \
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Dependency array (optional): The second argument is an optional array of dependencies. The effect will only run when the values inside the dependency array change. If the array is empty, the effect only runs once, similar to componentDidMount. \
 
-### `npm run build`
+## Examples:
+### 1.Running an effect on component mount:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+import React, { useEffect } from 'react'; \
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+const MyComponent = () => { \ 
+  useEffect(() => {  \
+    console.log('Component mounted!'); \
+  }, []); // Empty array means this effect runs once when the component mounts \
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+  return <div>Welcome to my component!</div>; \
+}; \
 
-### `npm run eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### 2. Running an effect on state or props change:
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+import React, { useState, useEffect } from 'react'; \
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+const MyComponent = () => { \
+  const [count, setCount] = useState(0); \
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+  useEffect(() => { \
+    console.log(`Count changed: ${count}`); \
+  }, [count]); // Runs every time `count` changes \
 
-## Learn More
+  return ( \
+    <div> \
+      <button onClick={() => setCount(count + 1)}>Increment</button> \
+    </div> \
+  ); \
+}; \
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 3. Cleaning up side effects:
+When side effects involve subscriptions or timers, it's important to clean them up to prevent memory leaks. This can be done by returning a cleanup function from within the useEffect \
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+import React, { useState, useEffect } from 'react'; \
+
+const TimerComponent = () => { \
+  const [time, setTime] = useState(0);\
+ 
+  useEffect(() => { \
+    const interval = setInterval(() => {    \
+      setTime(prevTime => prevTime + 1);    \
+    }, 1000); \
+
+    // Cleanup function: clear the interval when component unmounts \
+    return () => clearInterval(interval);\
+  }, []); // Empty array means effect runs once on mount\
+
+  return <div>Time: {time}</div>;\
+};\
+
+
+#### Summary of useEffect Behavior:
+Without dependencies (useEffect(() => {...})): Effect runs after every render. \
+With empty dependencies (useEffect(() => {...}, [])): Effect runs only once after the initial render, like componentDidMount. \
+With dependencies (useEffect(() => {...}, [dep])): Effect runs when any value in the dependency array changes, like componentDidUpdate. \
+
+### hooks
