@@ -11,9 +11,15 @@ import FetchBio from "./hooks/useEffectEg/fetchbio/FetchBio.jsx";
 import Counter from "./hooks/useEffectEg/Counter.jsx";
 import CounterRef from "./hooks/useRefEg/CounterRef.jsx";
 import Stopwatch from "./hooks/useRefEg/Stopwatch.tsx";
-import FocusText from "./hooks/useRefEg/domManipulationEg/FocusText.tsx";
-import ImageScroll from "./hooks/useRefEg/domManipulationEg/ImageScroll.tsx";
-import PlayPause from "./hooks/useRefEg/domManipulationEg/PlayPause.tsx";
+import CounterRed from "./hooks/useReducerEg/CounterRed.tsx";
+import Form from "./hooks/useReducerEg/Form.tsx";
+import TodoArray from "./hooks/useReducerEg/todoListArray/TodoArray.tsx";
+import TodoInitializaer from "./hooks/useReducerEg/TodoInitializaer.jsx";
+import MyApp from "./hooks/usecontext/myApp/tmp.tsx";
+import Eg2 from "./hooks/usecontext/Eg2.jsx";
+import TaskApp from "./hooks/usecontext/Eg/TaskApp.jsx";
+import ToggleTheme from "./hooks/usecontext/toggleTheme/ToggleTheme.jsx";
+import CounterCustom from "./hooks/customhooks/CounterCustom.jsx";
 
 const App = () => {
   return (
@@ -53,6 +59,21 @@ const App = () => {
       {/* <FocusText /> */}
       {/* <ImageScroll /> */}
       {/* <PlayPause /> */}
+
+      {/* useReducer */}
+      {/* <CounterRed /> */}
+      {/* <Form /> */}
+      {/* <TodoArray /> */}
+      {/* <TodoInitializaer username={"Ram"} /> */}
+
+      {/* useContext */}
+      {/* <MyApp /> */}
+      {/* <Eg2 /> */}
+      {/* <TaskApp /> */}
+      {/* <ToggleTheme /> */}
+
+      {/* custom hooks */}
+      <CounterCustom />
     </>
   );
 };

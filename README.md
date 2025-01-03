@@ -2,6 +2,7 @@
 
 ## useState() > useEffect() > useRef() >  useReducer() > useContext() > useCallback > useMemo() > customHooks()
 
+### useCallback > useMemo() --> read
 
 ## useEffect()
 
@@ -9,7 +10,7 @@ In React, useEffect is a Hook that allows you to perform side effects in functio
 It is a part of the React API and is used to handle operations like data fetching, subscriptions, or manual DOM manipulation. /
 It is similar to lifecycle methods in class components, such as componentDidMount, componentDidUpdate, and componentWillUnmount.
 
-### Syntax of useEffec
+### Syntax of useEffect
 
 useEffect(() => { \
  // Code to run on component mount, update, or unmount \
